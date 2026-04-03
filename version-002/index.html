@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Define codificação para aceitar acentos -->
+    <meta charset="UTF-8">
+
+    <!-- Faz a página ser responsiva em celular -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título que aparece na aba do navegador -->
+    <title>Eliminação de Gauss</title>
+
+    <!-- Importa o CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Título principal -->
+        <h1>Método de Eliminação de Gauss</h1>
+
+        <!-- Área onde usuário define tamanho do sistema -->
+        <div class="controls">
+            <label>Equações:</label>
+            <!-- Quantidade de linhas -->
+            <input type="number" id="equacoes" min="1" value="3">
+
+            <label>Variáveis:</label>
+            <!-- Quantidade de colunas -->
+            <input type="number" id="variaveis" min="1" value="3">
+
+            <!-- Botão que cria a matriz -->
+            <button onclick="gerarMatriz()">Gerar Matriz</button>
+        </div>
+
+        <!-- Aqui a matriz será desenhada -->
+        <div id="matriz-container"></div>
+
+        <!-- Botão para resolver o sistema -->
+        <button class="resolver" onclick="resolver()">Resolver</button>
+
+        <!-- Mostra a matriz após escalonamento -->
+        <h2>Matriz Escalonada</h2>
+        <div id="resultado"></div>
+
+        <!-- Mostra classificação (SPD, SPI, SI) -->
+        <h2>Classificação</h2>
+        <div id="classificacao"></div>
+
+        <!-- Mostra valores das variáveis -->
+        <h2>Solução</h2>
+        <div id="solucao"></div>
+
+        <!-- Mostra todos os passos -->
+        <h2>Passos</h2>
+        <pre id="passos"></pre>
+    </div>
+
+    <!-- Arquivo principal JS -->
+    <script src="script.js"></script>
+
+    <script>
+        /**
+         * Cria a matriz de inputs baseada no número de equações e variáveis
+         */
+        function gerarMatriz() {
+            const eq = parseInt(document.getElementById("equacoes").value);
+            const varr = parseInt(document.getElementById("variaveis").value);
+            const container = document.getElementById("matriz-container");
+
+            // limpa matriz anterior
+            container.innerHTML = "";
+
+            // cria linhas
+            for (let i = 0; i < eq; i++) {
+                const linha = document.createElement("div");
+                linha.className = "linha";
+
+                // cria colunas (variáveis + resultado)
+                for (let j = 0; j < varr + 1; j++) {
+                    const input = document.createElement("input");
+                    input.type = "number";
+                    input.step = "any";
+                    input.className = "celula";
+                    linha.appendChild(input);
+                }
+
+                container.appendChild(linha);
+            }
+        }
+
+        /**
+         * Função principal que resolve o sistema
+         */
+        function resolver() {
+
+            // pega valores da matriz digitada
+            const linhas = document.querySelectorAll(".linha");
+            const matriz = [];
+
+            linhas.forEach(linha => {
+                const valores = [];
+                linha.querySelectorAll("input").forEach(input => {
+                    valores.push(parseFloat(input.value) || 0);
+                });
+                matriz.push(valores);
+            });
+
+            // cria calculadora
+            const calc = new CalculadoraDeSistemasLineares(matriz);
+
+            // limpa tela
+            document.getElementById("passos").textContent = "";
+            document.getElementById("classificacao").textContent = "";
+            document.getElementById("solucao").textContent = "";
+            document.getElementById("resultado").innerHTML = "";
+
+            // faz escalonamento
+            calc.executarEscalonamentoNaMatriz();
+
+            // resolve sistema
+            const solucao = calc.resolverSistema();
+
+            // mostra matriz final
+            mostrarResultado(calc.matriz);
+
+            // mostra classificação
+            mostrarClassificacaoESolucao(solucao);
+        }
+
+        /**
+         * Mostra a matriz escalonada na tela
+         */
+        function mostrarResultado(matriz) {
+            const div = document.getElementById("resultado");
+            div.innerHTML = "";
+
+            matriz.forEach(linha => {
+                const row = document.createElement("div");
+                row.className = "linha";
+
+                linha.forEach(valor => {
+                    const cel = document.createElement("span");
+                    cel.className = "resultado-cel";
+                    cel.textContent = isFinite(valor) ? Number(valor).toFixed(3) : "NaN";
+                    row.appendChild(cel);
+                });
+
+                div.appendChild(row);
+            });
+        }
+
+        /**
+         * Mostra classificação e solução
+         */
+        function mostrarClassificacaoESolucao(sol) {
+
+            const classificacao = document.getElementById("classificacao");
+            const solucaoDiv = document.getElementById("solucao");
+
+            const textoPassos = document.getElementById("passos").textContent;
+
+            solucaoDiv.innerHTML = "";
+
+            // verifica classificação
+            if (textoPassos.includes("SI")) {
+                classificacao.textContent = "Sistema Impossível (SI)";
+                return;
+            }
+
+            if (textoPassos.includes("SPI")) {
+                classificacao.textContent = "Sistema Possível e Indeterminado (SPI)";
+                return;
+            }
+
+            classificacao.textContent = "Sistema Possível e Determinado (SPD)";
+
+            if (!sol) return;
+
+            // nomes das variáveis
+            const variaveis = ["x", "y", "z", "w", "v"];
+
+            // mostra solução
+            sol.forEach((valor, i) => {
+                const div = document.createElement("div");
+                div.textContent = `${variaveis[i]} = ${valor.toFixed(3)}`;
+                solucaoDiv.appendChild(div);
+            });
+        }
+    </script>
+
+</body>
+</html>

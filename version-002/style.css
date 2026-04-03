@@ -1,0 +1,100 @@
+/* Estilo geral da página */
+body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+    padding: 20px;
+}
+
+/* Container central */
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Centraliza títulos */
+h1,
+h2 {
+    text-align: center;
+}
+
+/* Área dos controles */
+.controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+input {
+    padding: 8px;
+    width: 60px;
+    text-align: center;
+}
+
+/* Botões */
+button {
+    padding: 10px 15px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+/* Hover botão */
+button:hover {
+    background: #1d4ed8;
+}
+
+/* Botão resolver */
+.resolver {
+    display: block;
+    margin: 20px auto;
+    background: #16a34a;
+}
+
+/* Hover resolver */
+.resolver:hover {
+    background: #15803d;
+}
+
+/* Linha da matriz */
+.linha {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+/* Célula de input */
+.celula {
+    width: 60px;
+    padding: 8px;
+}
+
+/* Célula resultado */
+.resultado-cel {
+    display: inline-block;
+    width: 60px;
+    padding: 8px;
+    background: #1e293b;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* Caixa de passos */
+pre {
+    background: #020617;
+    padding: 15px;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+/* Formatação dos passos */
+#passos {
+    font-family: monospace;
+    white-space: pre;
+    background: #020617;
+}

@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+.config {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.config input {
+    width: 60px;
+    padding: 5px;
+}
+
+.matriz-inputs {
+    margin: 20px 0;
+}
+
+.linha {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.linha input {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+}
+
+.resolver {
+    padding: 10px;
+    width: 100%;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.passos {
+    margin-top: 20px;
+}
+
+.matriz {
+    margin-bottom: 20px;
+}
+
+.matriz table {
+    border-collapse: collapse;
+}
+
+.matriz td {
+    border: 1px solid #333;
+    padding: 8px;
+    text-align: center;
+    min-width: 50px;
+}
+
+.pivo{
+    background:#ffeb3b;
+    font-weight:bold;
+}

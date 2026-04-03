@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solucionador de Sistemas Lineares</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Solucionador de Sistemas Lineares</h1>
+        <p class="subtitle">Método de Escalonamento (Eliminação de Gauss)</p>
+        
+        <div class="input-section">
+            <h2>Entrada de Dados</h2>
+            
+            <!-- Opção 1: Entrada Manual -->
+            <div class="input-mode">
+                <h3>Modo 1: Entrada Manual</h3>
+                <div class="form-group">
+                    <label for="rows">Número de Equações:</label>
+                    <input type="number" id="rows" min="2" max="10" value="3">
+                    
+                    <label for="cols">Número de Variáveis:</label>
+                    <input type="number" id="cols" min="2" max="10" value="3">
+                    
+                    <button onclick="createMatrixInputs()">Criar Matriz</button>
+                </div>
+                
+                <div id="matrix-inputs" class="matrix-inputs"></div>
+            </div>
+            
+            <!-- Opção 2: Upload de Arquivo -->
+            <div class="input-mode">
+                <h3>Modo 2: Upload de Arquivo</h3>
+                <div class="form-group">
+                    <label for="file-input">Selecionar arquivo .txt:</label>
+                    <input type="file" id="file-input" accept=".txt">
+                    <p class="help-text">Formato esperado:<br>primeiro número é m (linhas), segundo é n (colunas)<br>Exemplo para 2 equações e 2 variáveis:<br>2 3<br>1 2 3<br>4 5 6</p>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button onclick="solveSystem()" class="btn-primary">Resolver Sistema</button>
+                <button onclick="resetCalculator()" class="btn-secondary">Limpar</button>
+            </div>
+        </div>
+        
+        <!-- Seção de Resultados -->
+        <div id="results-section" class="results-section hidden">
+            <h2>Resultados</h2>
+            
+            <!-- Classificação do Sistema -->
+            <div class="result-box">
+                <h3>Classificação do Sistema</h3>
+                <p id="classification" class="classification"></p>
+            </div>
+            
+            <!-- Matriz Original -->
+            <div class="result-box">
+                <h3>Matriz Ampliada Original [A|b]</h3>
+                <div id="original-matrix" class="matrix-display"></div>
+            </div>
+            
+            <!-- Passo a Passo -->
+            <div class="result-box">
+                <h3>Passo a Passo do Escalonamento</h3>
+                <div id="steps-container" class="steps-container"></div>
+            </div>
+            
+            <!-- Matriz Final -->
+            <div class="result-box">
+                <h3>Forma Escalonada</h3>
+                <div id="final-matrix" class="matrix-display"></div>
+            </div>
+            
+            <!-- Solução -->
+            <div class="result-box">
+                <h3>Conjunto Solução</h3>
+                <p id="solution" class="solution-text"></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
