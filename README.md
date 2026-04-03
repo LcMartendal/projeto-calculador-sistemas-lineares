@@ -55,10 +55,22 @@ Não possui solução
 
 # 📂 Estrutura do Projeto
 
-    /
-    ├── index.html
-    ├── style.css
-    ├── script.js
+    \
+    ├── version-001
+    ├   ├── index.html
+    ├   ├── style.css
+    ├   ├── script.js
+    ├
+    ├── version-002
+    ├   ├── index.html
+    ├   ├── style.css
+    ├   ├── script.js
+    ├
+    ├── version-003
+    ├   ├── index.html
+    ├   ├── style.css
+    ├   ├── script.js
+    ├
     └── README.md
 
 ------------------------------------------------------------------------
