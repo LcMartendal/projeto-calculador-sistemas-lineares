@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Calculadora de Sistemas Lineares</h1>
+
+        <div class="card montar-matriz">
+            <label>Quantidade de Expressões:</label>
+            <input type="number" id="qtdeExpressao">
+
+            <label>Quantidade de Variáveis:</label>
+            <input type="number" id="qtdeVariavel">
+
+            <button onclick="SetarValoresMatriz()">Montar Matriz</button>
+        </div>
+
+        <div class="card">
+            <h3>Matriz</h3>
+            <div id="matriz-container"></div>
+        </div>
+
+        <div class="card">
+            <h3>Classificação</h3>
+            <div id="classificacao"></div>
+        </div>
+
+        <div class="card">
+            <h3>Solução</h3>
+            <div id="solucao"></div>
+        </div>
+
+        <div class="card">
+            <h3>Passo a Passo</h3>
+            <div id="passos"></div>
+        </div>
+
+    </div>
+</body>
+
+</html>
